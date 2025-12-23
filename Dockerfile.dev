@@ -1,0 +1,14 @@
+# Dockerfile
+FROM oven/bun:latest
+
+WORKDIR /app
+
+RUN apt-get update && apt-get install -y curl git
+
+COPY package.json bun.lockb* tsconfig.json ./
+
+RUN bun install
+
+COPY . .
+
+EXPOSE 3000
